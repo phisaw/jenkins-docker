@@ -1,9 +1,8 @@
-FROM jenkins/jenkins:lts
+FROM jenkins4eval/jenkins
 USER root
 
 RUN mkdir -p /tmp/download && \
- curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.03.1-ce.tgz | tar -xz -C /tmp/download && \
- rm -rf /tmp/download/docker/dockerd && \
+ curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
  mv /tmp/download/docker/docker* /usr/local/bin/ && \
  rm -rf /tmp/download && \
  groupadd -g 999 docker && \
